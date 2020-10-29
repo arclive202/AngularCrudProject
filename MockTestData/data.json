@@ -1,0 +1,34 @@
+{
+  "userdata": [
+    {
+      "name": "Test2",
+      "email": "test2@test.com",
+      "phno": "1231312311",
+      "bdate": "2000-01-01",
+      "addr": "4th Cross, 5th Main Road,\nMalleshwaram\nBangalore",
+      "imgPath": "assets/images/Img02.JPG",
+      "imgFile": {},
+      "id": 2
+    },
+    {
+      "name": "Test3",
+      "email": "test3@test.com",
+      "phno": "1231235647",
+      "bdate": "2011-01-01",
+      "addr": "13th Street\nJogupalya\nHalsuru\nBangalore",
+      "imgPath": "assets/images/Img03.JPG",
+      "imgFile": {},
+      "id": 3
+    },
+    {
+      "name": "Test4",
+      "email": "test4@test.com",
+      "phno": "1231231231",
+      "bdate": "2000-01-01",
+      "addr": "Aasdada",
+      "imgPath": "assets/images/Img04.JPG",
+      "imgFile": {},
+      "id": 4
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+<div *ngIf="!confirmView" class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">User List</h3>
+    </div>
+
+    <table class="table table-hover" id="dev-table">
+        <thead class="thead-dark">
+            <tr>
+                
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Date of Birth</th>
+                <th>Photo</th>
+                <!-- <th>blob</th> -->
+                <th>Delete</th>
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr
+                *ngFor='let u of users'
+                class="tableRow"
+                
+            >
+                
+                <td>{{ u.name }}</td>
+                <td>{{ u.email }}</td>
+                <td>{{ u.phno }}</td>
+                <td>{{ u.bdate }}</td>
+                <!-- <input type='file' (change)="onSelectFile($event)"> -->
+                <!-- <td>{{ u.imgPath}}</td> -->
+                <td><img class="imageClass" (click)="imgclick(u.id)" [src]="u.imgPath"></td>
+                <!-- <td><img class="imageClass" (click)="imgclick(u.id)" [src]="view(u.imgPath)"></td> -->
+                <td><button type="button"  (click)="delete_user(u.id);deletefile(u.imgPath)">x</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div *ngIf="confirmView">
+        <img height="150px" [src]="users[val].imgPath">
+        <br/>
+        <table>
+            <thead class="thead-dark">
+                <tr>
+                    
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>{{ users[val].name }}</td>
+                    <td>{{ users[val].email }}</td>
+                    <td>{{ users[val].phno }}</td>
+                    <td>{{ users[val].bdate }}</td>
+                    <td>{{ users[val].addr }}</td>
+                </tr>
+        </table>
+        <br/>
+        <button type="button" (click)="confirmView=false" >Back</button>
+     
+    </div>

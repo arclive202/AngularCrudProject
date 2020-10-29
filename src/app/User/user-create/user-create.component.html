@@ -1,0 +1,153 @@
+<div class="container">
+
+    
+  
+    <form [formGroup]="heroForm" (ngSubmit)="OnSubmit()" #formDir="ngForm" >
+      <h1>Add User</h1>
+  
+      <div [hidden]="formDir.submitted">
+  
+           <div class="form-group">
+  
+            <label for="name">Name</label>
+            <input id="name" class="form-control"
+                  formControlName="name" required >
+  
+            <div *ngIf="name.invalid && (name.dirty || name.touched) "
+                class="alert alert-danger">
+  
+              <div *ngIf="name.errors.required">
+                Name is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                Name must be at least 4 characters long.
+              </div>
+              <div *ngIf="name.errors.forbiddenName">
+                Name cannot be Admin.
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" class="form-control"
+                formControlName="email" required >
+  
+            <div *ngIf="email.pending">Validating...</div>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger alter-ego-errors">
+              <div *ngIf="email.errors.required">
+                Email is required.
+              </div>
+              <div *ngIf="email.errors?.UniqueEmail">
+                User with the Email already.
+              </div>
+              <div *ngIf="email.errors?.email">
+                Not a valid Email Pattern.
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="phno">Phone Number</label>
+            <input id="phno" class="form-control"
+                formControlName="phno" required >
+  
+            <div *ngIf="phno.pending">Validating...</div>
+            <div *ngIf="phno.invalid && (phno.dirty || phno.touched)" class="alert alert-danger">
+              <div *ngIf="phno.errors.required">
+                Need to Enter a Number
+              </div>
+              <div *ngIf="phno.errors.pattern">
+                Must be a ten digit number.
+              </div>
+            </div>
+          
+  
+          <div class="form-group">
+            <label for="bdate">Date of Birth</label>
+            <input id="bdate" type="date" class="form-control"
+                formControlName="bdate" required >
+  
+            <div *ngIf="bdate.pending">Validating...</div>
+            <div *ngIf="bdate.invalid && (bdate.dirty || bdate.touched)" class="alert alert-danger">
+              <div *ngIf="bdate.errors.required">
+                Enter a Date of Birth
+              </div> 
+              <div *ngIf="bdate.errors.dateMinimum">
+                Birthdate should be after 1900-01-01
+              </div>           
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="addr">Address</label>
+            <textarea  rows="4" cols="50" id="addr" type="text" class="form-control" aria-multiline="true"
+                formControlName="addr" required > </textarea>
+  
+            <div *ngIf="addr.pending">Validating...</div>
+            <div *ngIf="addr.invalid  && (addr.dirty || addr.touched)" class="alert alert-danger">
+              <div *ngIf="addr.errors.required">
+                Address is required.
+              </div>            
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="File" name="img" accept="image/*" single ng2FileSelect [uploader]="uploader" (change)="onSelectFile($event)">
+            <div *ngIf="selectedFileType" class="alert alert-danger">
+              File selected is not an Image
+            </div>
+            
+          </div>
+  
+          
+        </div>
+  
+        <!-- <div class="form-group">
+          <label for="power">Hero Power</label>
+          <select id="power" class="form-control"
+              formControlName="power" required >
+            <option *ngFor="let p of powers" [value]="p">{{p}}</option>
+          </select>
+  
+          <div *ngIf="power.invalid && power.touched" class="alert alert-danger">
+            <div *ngIf="power.errors.required">Power is required.</div>
+          </div>
+        </div> -->
+  
+        <!-- <div class="form-group">
+          <input type="file" accept="image/*" (change)="OnFileChanged($event)"> <button (click)="OnUpload()">Upload</button>
+        </div> -->
+  
+        <!-- Add an image upload field as well -->
+
+        <div *ngIf="disable">  
+        <button type="submit" class="btn btn-default" 
+               [disabled]="heroForm.invalid" >Save User Info</button>
+              
+        <button type="button" class="btn btn-default"
+               (click)="formDir.resetForm({})">Reset</button>
+        </div>
+      </div>
+  
+      
+    </form>
+  
+    
+  
+    <div class="submitted-message" *ngIf="formDir.submitted">
+      <h1>New User Details </h1>
+      <div class="panel-heading">
+      <p> Name: {{ heroForm.value.name }}</p>
+      <p> Email: {{ heroForm.value.email }}</p>
+      <p> D.O.B: {{ heroForm.value.bdate }}</p>
+      <p> Address: {{ heroForm.value.addr }}</p>
+      <p> Phone Number: {{ heroForm.value.phno }}</p>
+    </div>
+
+      <h3>Redirecting to list...</h3>
+      
+      <!-- <button (click)="formDir.resetForm({})">Add User</button> -->
+    </div>
+  </div>
+  
